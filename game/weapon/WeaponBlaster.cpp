@@ -146,6 +146,8 @@ rvWeaponBlaster::Spawn
 ================
 */
 void rvWeaponBlaster::Spawn ( void ) {
+	spread = rand() % 100;         // spread in the range 0 to 99
+
 	viewModel->SetShaderParm ( BLASTER_SPARM_CHARGEGLOW, 0 );
 	SetState ( "Raise", 0 );
 	
@@ -427,11 +429,15 @@ stateResult_t rvWeaponBlaster::State_Fire ( const stateParms_t& parms ) {
 
 	
 			if ( gameLocal.time - fireHeldTime > chargeTime ) {	
-				Attack ( true, 10, spread, 0, 1.0f );
+				spread = rand() % 100;         // spread in the range 0 to 99
+				Attack ( true, 1, spread, 0, 1.0f );
+				Spawn();
+
 				PlayEffect ( "fx_chargedflash", barrelJointView, false );
 				PlayAnim( ANIMCHANNEL_ALL, "chargedfire", parms.blendFrames );
 			} else {
-				Attack ( false, 1, spread, 0, 1.0f );
+				Attack ( false, 10, spread, 0, 1.0f );
+				//class rvWeaponShotgun Spawn();	//spawn shotgun??
 				PlayEffect ( "fx_normalflash", barrelJointView, false );
 				PlayAnim( ANIMCHANNEL_ALL, "fire", parms.blendFrames );
 			}

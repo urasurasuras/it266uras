@@ -170,13 +170,13 @@ stateResult_t rvWeaponShotgun::State_Fire( const stateParms_t& parms ) {
 			nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
 			if (gameLocal.time - fireHeldTime > chargeTime) {
 				Attack(true, 10, spread, 0, 1.0f);
-				PlayEffect("fx_chargedflash", barrelJointView, false);
-				PlayAnim(ANIMCHANNEL_ALL, "chargedfire", parms.blendFrames);
+				//PlayEffect("fx_chargedflash", barrelJointView, false);
+				//PlayAnim(ANIMCHANNEL_ALL, "chargedfire", parms.blendFrames);
 			}
 			else {
 				Attack(false, 1, spread, 0, 1.0f);
-				PlayEffect("fx_normalflash", barrelJointView, false);
-				PlayAnim(ANIMCHANNEL_ALL, "fire", parms.blendFrames);
+				//PlayEffect("fx_normalflash", barrelJointView, false);
+				//PlayAnim(ANIMCHANNEL_ALL, "fire", parms.blendFrames);
 			}
 			//Attack( false, hitscans, spread, 0, 1.0f );
 			PlayAnim( ANIMCHANNEL_ALL, "fire", 0 );	
