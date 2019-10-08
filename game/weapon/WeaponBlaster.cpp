@@ -429,14 +429,16 @@ stateResult_t rvWeaponBlaster::State_Fire ( const stateParms_t& parms ) {
 
 	
 			if ( gameLocal.time - fireHeldTime > chargeTime ) {	
-				spread = rand() % 100;         // spread in the range 0 to 99
-				Attack ( true, 1, spread, 0, 1.0f );
+				spread = rand() % 10 + 1;         // spread in the range 0 to 99
+				//Attack ( true, 1, spread, 0, 1.0f );
 				Spawn();
+				gameLocal.Printf("Spawned new blaster with spread of: %.1f\n",spread);
 
 				PlayEffect ( "fx_chargedflash", barrelJointView, false );
 				PlayAnim( ANIMCHANNEL_ALL, "chargedfire", parms.blendFrames );
 			} else {
 				Attack ( false, 10, spread, 0, 1.0f );
+				//gameLocal.Printf("%f", spread);
 				//class rvWeaponShotgun Spawn();	//spawn shotgun??
 				PlayEffect ( "fx_normalflash", barrelJointView, false );
 				PlayAnim( ANIMCHANNEL_ALL, "fire", parms.blendFrames );

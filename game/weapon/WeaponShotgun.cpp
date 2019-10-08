@@ -52,9 +52,11 @@ rvWeaponShotgun::Spawn
 ================
 */
 void rvWeaponShotgun::Spawn( void ) {
+	spread = rand() % 10 + 1;         // spread in the range 0 to 9
 	hitscans   = spawnArgs.GetFloat( "hitscans" );
 	
 	SetState( "Raise", 0 );	
+	gameLocal.Printf("picked new shotgun with spread of: %.1f\n", spread);
 }
 
 /*
@@ -168,17 +170,18 @@ stateResult_t rvWeaponShotgun::State_Fire( const stateParms_t& parms ) {
 	switch ( parms.stage ) {
 		case STAGE_INIT:
 			nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
-			if (gameLocal.time - fireHeldTime > chargeTime) {
-				Attack(true, 10, spread, 0, 1.0f);
-				//PlayEffect("fx_chargedflash", barrelJointView, false);
-				//PlayAnim(ANIMCHANNEL_ALL, "chargedfire", parms.blendFrames);
-			}
-			else {
-				Attack(false, 1, spread, 0, 1.0f);
-				//PlayEffect("fx_normalflash", barrelJointView, false);
-				//PlayAnim(ANIMCHANNEL_ALL, "fire", parms.blendFrames);
-			}
-			//Attack( false, hitscans, spread, 0, 1.0f );
+			//if (gameLocal.time - fireHeldTime > chargeTime) {
+			//	Attack(true, 10, spread, 0, 1.0f);
+			//	//PlayEffect("fx_chargedflash", barrelJointView, false);
+			//	//PlayAnim(ANIMCHANNEL_ALL, "chargedfire", parms.blendFrames);
+			//}
+			//else {
+			//	Attack(false, 1, spread, 0, 1.0f);
+			//	//PlayEffect("fx_normalflash", barrelJointView, false);
+			//	//PlayAnim(ANIMCHANNEL_ALL, "fire", parms.blendFrames);
+			//}
+			Attack( false, hitscans, spread, 0, 1.0f );
+			gameLocal.Printf("Spread of last shotgun fire: %.1f\n", spread);
 			PlayAnim( ANIMCHANNEL_ALL, "fire", 0 );	
 			return SRESULT_STAGE( STAGE_WAIT );
 	

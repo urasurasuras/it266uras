@@ -1112,6 +1112,7 @@ Cmd_Spawn_f
 */
 void Cmd_Spawn_f( const idCmdArgs &args ) {
 #ifndef _MPBETA
+	gameLocal.Printf("args here \n");
 	const char *key, *value;
 	int			i;
 	float		yaw;
