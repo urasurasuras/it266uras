@@ -441,7 +441,7 @@ stateResult_t rvWeaponBlaster::State_Fire ( const stateParms_t& parms ) {
 				PlayEffect ( "fx_chargedflash", barrelJointView, false );
 				PlayAnim( ANIMCHANNEL_ALL, "chargedfire", parms.blendFrames );
 			} else {
-				spawnSmth();
+				//spawnSmth();
 				Attack ( false, 10, spread, 0, 1.0f );
 				gameLocal.Printf("Spread of last blaster shot: %.1f\n", spread);
 				PlayEffect("fx_normalflash", barrelJointView, false);

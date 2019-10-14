@@ -173,8 +173,8 @@ entityDef weapon_machinegun
 
 	// Scope / Zoom
 	"spreadzoom"				"10"
-	"zoomFov"					"10"
-	"zoomTime"					".1"
+	"zoomFov"					"110"
+	"zoomTime"					"1"
 	"zoomHideCrosshair"			"0"
 	"gui_zoom"					"guis/weapons/machinegun_scope.gui"
 

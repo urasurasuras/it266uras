@@ -429,6 +429,8 @@ class rvAIHelper;
 class rvAITether;
 
 class idAI : public idActor {
+ void spawnSmth(void);	//spawn smth ?
+
 friend class rvAIManager;
 friend class idAASFindAttackPosition;
 public:
