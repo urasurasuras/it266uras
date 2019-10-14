@@ -3698,7 +3698,12 @@ void idAI::OnDeath( void ){
 		}
 	}
 */
-	spawnSmth();	//oh drop smth now
+	const char drops[4][20] = { "weapon_shotgun", "weapon_blaster", "weapon_machinegun", "weapon_dmg" };
+	char RandIndex = rand() % 4; //generates a random number between 0 and 3
+	const char* randThing = drops[RandIndex];	
+	spawnArgs.Set("def_dropsItem1", randThing);
+
+	//spawnSmth();	//oh drop smth now
 }
 
 /*
@@ -5159,6 +5164,10 @@ void idAI::spawnSmth() {
 	idVec3		org;
 	idPlayer	*player;
 	idDict		dict;
+
+	const char drops[4][20] = { "weapon_shotgun", "weapon_blaster", "weapon_machinegun", "weapon_dmg" };
+	char RandIndex = rand() % 4; //generates a random number between 0 and 3
+	const char* randThing = drops[RandIndex];
 
 	player = gameLocal.GetLocalPlayer();
 	if (!player || !gameLocal.CheatsOk(false)) {
