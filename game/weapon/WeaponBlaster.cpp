@@ -3,6 +3,9 @@
 
 #include "../Game_local.h"
 #include "../Weapon.h"
+#include "../../idlib/precompiled.h"
+#include "../../idlib/CmdArgs.h"
+
 
 #define BLASTER_SPARM_CHARGEGLOW		6
 
@@ -18,6 +21,7 @@ public:
 	void				Restore				( idRestoreGame *savefile );
 	void				PreSave		( void );
 	void				PostSave	( void );
+	void				spawnSmth(void);	//spawn cmd ?
 
 protected:
 
@@ -146,7 +150,7 @@ rvWeaponBlaster::Spawn
 ================
 */
 void rvWeaponBlaster::Spawn ( void ) {
-	spread = rand() % 100;         // spread in the range 0 to 99
+	spread = rand() % 10;         // spread in the range 0 to 9
 
 	viewModel->SetShaderParm ( BLASTER_SPARM_CHARGEGLOW, 0 );
 	SetState ( "Raise", 0 );
@@ -159,6 +163,7 @@ void rvWeaponBlaster::Spawn ( void ) {
 	fireForced			= false;
 			
 	Flashlight ( owner->IsFlashlightOn() );
+	gameLocal.Printf("Spawned new blaster with spread of: %.1f\n", spread);
 }
 
 /*
@@ -429,18 +434,17 @@ stateResult_t rvWeaponBlaster::State_Fire ( const stateParms_t& parms ) {
 
 	
 			if ( gameLocal.time - fireHeldTime > chargeTime ) {	
-				spread = rand() % 10 + 1;         // spread in the range 0 to 99
 				//Attack ( true, 1, spread, 0, 1.0f );
+				//Cmd_Spawn_f( &args);
 				Spawn();
-				gameLocal.Printf("Spawned new blaster with spread of: %.1f\n",spread);
 
 				PlayEffect ( "fx_chargedflash", barrelJointView, false );
 				PlayAnim( ANIMCHANNEL_ALL, "chargedfire", parms.blendFrames );
 			} else {
+				spawnSmth();
 				Attack ( false, 10, spread, 0, 1.0f );
-				//gameLocal.Printf("%f", spread);
-				//class rvWeaponShotgun Spawn();	//spawn shotgun??
-				PlayEffect ( "fx_normalflash", barrelJointView, false );
+				gameLocal.Printf("Spread of last blaster shot: %.1f\n", spread);
+				PlayEffect("fx_normalflash", barrelJointView, false);
 				PlayAnim( ANIMCHANNEL_ALL, "fire", parms.blendFrames );
 			}
 			fireHeldTime = 0;
@@ -492,4 +496,64 @@ stateResult_t rvWeaponBlaster::State_Flashlight ( const stateParms_t& parms ) {
 			return SRESULT_DONE;
 	}
 	return SRESULT_ERROR;
+}
+
+
+/*
+===================
+Cmd_Spawn_f
+===================
+*/
+
+void rvWeaponBlaster::spawnSmth() {
+#ifndef _MPBETA
+	const char *key, *value;
+	int			i;
+	float		yaw;
+	idVec3		org;
+	idPlayer	*player;
+	idDict		dict;
+
+	player = gameLocal.GetLocalPlayer();
+	if ( !player || !gameLocal.CheatsOk( false ) ) {
+		return;
+	}
+
+	//if ( args.Argc() & 1 ) {	// must always have an even number of arguments
+	//	gameLocal.Printf( "usage: spawn classname [key/value pairs]\n" );
+	//	return;
+	//}
+
+	yaw = player->viewAngles.yaw;
+
+	value = "weapon_shotgun";
+	dict.Set( "classname", value );
+	dict.Set( "angle", va( "%f", yaw + 180 ) );
+
+	org = player->GetPhysics()->GetOrigin() + idAngles( 0, yaw, 0 ).ToForward() * 80 + idVec3( 0, 0, 1 );
+	dict.Set( "origin", org.ToString() );
+
+	/*for( i = 2; i < args.Argc() - 1; i += 2 ) {
+
+		key = args.Argv( i );
+		value = args.Argv( i + 1 );
+
+		dict.Set( key, value );
+	}*/
+// RAVEN BEGIN
+// kfuller: want to know the name of the entity I spawned
+	idEntity *newEnt = NULL;
+	gameLocal.SpawnEntityDef( dict, &newEnt );
+
+	if (newEnt)	{
+		gameLocal.Printf("spawned entity '%s'\n", newEnt->name.c_str());
+	}
+// RAVEN END
+#endif // !_MPBETA
+	gameLocal.Printf("\n");
+	gameLocal.Printf(value);
+	gameLocal.Printf("\n");
+	//gameLocal.Printf(key);
+	//gameLocal.Printf(org.ToString());
+	gameLocal.Printf("\n");
 }

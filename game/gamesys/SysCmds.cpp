@@ -1112,7 +1112,6 @@ Cmd_Spawn_f
 */
 void Cmd_Spawn_f( const idCmdArgs &args ) {
 #ifndef _MPBETA
-	gameLocal.Printf("args here \n");
 	const char *key, *value;
 	int			i;
 	float		yaw;
@@ -1146,7 +1145,6 @@ void Cmd_Spawn_f( const idCmdArgs &args ) {
 
 		dict.Set( key, value );
 	}
-
 // RAVEN BEGIN
 // kfuller: want to know the name of the entity I spawned
 	idEntity *newEnt = NULL;
@@ -1157,6 +1155,12 @@ void Cmd_Spawn_f( const idCmdArgs &args ) {
 	}
 // RAVEN END
 #endif // !_MPBETA
+	gameLocal.Printf("\n");
+	gameLocal.Printf(value);
+	gameLocal.Printf("\n");
+	//gameLocal.Printf(key);
+	//gameLocal.Printf(org.ToString());
+	gameLocal.Printf("\n");
 }
 
 // RAVEN BEGIN
