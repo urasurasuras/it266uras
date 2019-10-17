@@ -633,7 +633,7 @@ void rvWeapon::Spawn ( void ) {
 	nextAttackTime = 0;
 
 	// Zoom
-	zoomFov = spawnArgs.GetInt( "zoomFov", "-1" );
+	zoomFov = rand() % 100;/*spawnArgs.GetInt( "zoomFov", "-1" );*/
 	zoomGui  = uiManager->FindGui ( spawnArgs.GetString ( "gui_zoom", "" ), true );
 	zoomTime = spawnArgs.GetFloat ( "zoomTime", ".15" );
 	wfl.zoomHideCrosshair = spawnArgs.GetBool ( "zoomHideCrosshair", "1" );

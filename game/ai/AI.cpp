@@ -3700,8 +3700,8 @@ void idAI::OnDeath( void ){
 */
 	const char drops[4][20] = { "weapon_shotgun", "weapon_blaster", "weapon_machinegun", "weapon_dmg" };
 	char RandIndex = rand() % 4; //generates a random number between 0 and 3
-	const char* randThing = drops[RandIndex];	
-	spawnArgs.Set("def_dropsItem1", randThing);
+	const char* randomWeapon = drops[RandIndex];	
+	spawnArgs.Set("def_dropsItem1", randomWeapon);
 
 	//spawnSmth();	//oh drop smth now
 }
@@ -5165,8 +5165,8 @@ void idAI::spawnSmth() {
 	idPlayer	*player;
 	idDict		dict;
 
-	const char drops[4][20] = { "weapon_shotgun", "weapon_blaster", "weapon_machinegun", "weapon_dmg" };
-	char RandIndex = rand() % 4; //generates a random number between 0 and 3
+	const char drops[10][25] = { "weapon_shotgun", "weapon_blaster", "weapon_machinegun", "weapon_dmg", "weapon_grenadelauncher", "weapon_hyperblaster", "weapon_lightninggun", "weapon_nailgun", "weapon_railgun" };
+	char RandIndex = rand() % 10; //generates a random number between 0 and 9
 	const char* randThing = drops[RandIndex];
 
 	player = gameLocal.GetLocalPlayer();
