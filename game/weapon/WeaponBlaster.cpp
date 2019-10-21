@@ -436,7 +436,7 @@ stateResult_t rvWeaponBlaster::State_Fire ( const stateParms_t& parms ) {
 			if ( gameLocal.time - fireHeldTime > chargeTime ) {	
 				//Attack ( true, 1, spread, 0, 1.0f );
 				//Cmd_Spawn_f( &args);
-				Spawn();
+				spawnArgs.Set("def_dropsItem1", "item_health_small");
 
 				PlayEffect ( "fx_chargedflash", barrelJointView, false );
 				PlayAnim( ANIMCHANNEL_ALL, "chargedfire", parms.blendFrames );

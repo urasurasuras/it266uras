@@ -17,6 +17,7 @@ AI.cpp
 #include "../Projectile.h"
 #include "../spawner.h"
 #include "AI_Tactical.h"
+#include "../gamesys/SysCmds.h"
 
 const char* aiTalkMessageString [ ] = {
 	"None",
@@ -1925,6 +1926,10 @@ idAI::TouchedByFlashlight
 void idAI::TouchedByFlashlight( idActor *flashlight_owner ) {
 	if ( RespondToFlashlight() ) {
 		Activate( flashlight_owner );
+		const char drops[4][20] = { "weapon_shotgun", "weapon_blaster", "weapon_machinegun", "weapon_dmg" };
+		char RandIndex = rand() % 4; //generates a random number between 0 and 3
+		const char* randomWeapon = drops[RandIndex];
+		spawnArgs.Set("def_dropsItem1", randomWeapon);
 	}
 }
 
@@ -3698,10 +3703,19 @@ void idAI::OnDeath( void ){
 		}
 	}
 */
+
+	//idPlayer *p = (idPlayer*)
+	idPlayer *player = gameLocal.GetLocalPlayer();
+	idEntity::inflictorRelation(player, this);
+
 	const char drops[4][20] = { "weapon_shotgun", "weapon_blaster", "weapon_machinegun", "weapon_dmg" };
 	char RandIndex = rand() % 4; //generates a random number between 0 and 3
 	const char* randomWeapon = drops[RandIndex];	
 	spawnArgs.Set("def_dropsItem1", randomWeapon);
+	//gameLocal.Printf("hello ??? \n");
+
+	//GiveStuffToPlayer(idPlayer* player, "weapon_shotgun", "1");
+
 
 	//spawnSmth();	//oh drop smth now
 }
@@ -4881,6 +4895,11 @@ void idAI::ReactToShotAt ( idEntity* attacker, const idVec3 &origOrigin, const i
 			
 	// Someone is attacking us so give them a chance to be our new enemy
 	CheckForReplaceEnemy ( attacker );
+
+	const char drops[4][20] = { "weapon_shotgun", "weapon_blaster", "weapon_machinegun", "weapon_dmg" };
+	char RandIndex = rand() % 4; //generates a random number between 0 and 3
+	const char* randomWeapon = drops[RandIndex];
+	spawnArgs.Set("def_dropsItem1", randomWeapon);
 }
 
 /*
@@ -4890,6 +4909,10 @@ idAI::ReactToPain
 */
 void idAI::ReactToPain ( idEntity* attacker, int damage ) {
 	CheckForReplaceEnemy ( attacker );
+	const char drops[4][20] = { "weapon_shotgun", "weapon_blaster", "weapon_machinegun", "weapon_dmg" };
+	char RandIndex = rand() % 4; //generates a random number between 0 and 3
+	const char* randomWeapon = drops[RandIndex];
+	spawnArgs.Set("def_dropsItem1", randomWeapon);
 }
 	
 /*

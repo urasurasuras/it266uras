@@ -254,6 +254,8 @@ idDict::Set
 ================
 */
 void idDict::Set( const char *key, const char *value ) {
+	//gameLocal.Printf("in idDict set function");
+
 	int i;
 	idKeyValue kv;
 // RAVEN BEGIN

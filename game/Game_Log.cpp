@@ -185,6 +185,7 @@ rvGameLogLocal::Set
 ================
 */
 void rvGameLogLocal::Set ( const char* keyword, const char* value ) {	
+	gameLocal.Printf("in gamelocal set function \n");
 	int i;
 	i = index.AddUnique ( keyword );
 	frame.SetNum ( index.Num(), true );
@@ -193,15 +194,18 @@ void rvGameLogLocal::Set ( const char* keyword, const char* value ) {
 }
 
 void rvGameLogLocal::Set ( const char* keyword, int value ) {
+	gameLocal.Printf("in gamelocal set function \n");
 	Set ( keyword, va("%d", value ) );	
 }
 
 void rvGameLogLocal::Set ( const char* keyword, float value ) {
-	Set ( keyword, va("%g", value ) );
+	gameLocal.Printf("in gamelocal set function \n");
+	Set(keyword, va("%g", value));
 }
 
 void rvGameLogLocal::Set ( const char* keyword, bool value ) {
-	Set ( keyword, va("%d", (int)value ) );
+	gameLocal.Printf("in gamelocal set function \n");
+	Set(keyword, va("%d", (int)value));
 }
 	
 /*

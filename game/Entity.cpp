@@ -3640,11 +3640,11 @@ void idEntity::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
 		return;
 	}
 
-	if ( !inflictor ) {
+	if ( !inflictor ) {	//set inflictor if there is non
 		inflictor = gameLocal.world;
 	}
 
-	if ( !attacker ) {
+	if ( !attacker ) {	//set attacker if there is non
 		attacker = gameLocal.world;
 	}
 
@@ -3653,7 +3653,7 @@ void idEntity::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
 		gameLocal.Error( "Unknown damageDef '%s'\n", damageDefName );
 	}
 
-	int	damage = damageDef->GetInt( "damage" );
+	int	damage = damageDef->GetInt( "damage" );	//damage amount
 
 	// inform the attacker that they hit someone
 	attacker->DamageFeedback( this, inflictor, damage );
@@ -3672,6 +3672,20 @@ void idEntity::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
 			Pain( inflictor, attacker, damage, dir, location );
 		}
 	}
+}
+
+void idEntity::inflictorRelation(idEntity *inflictor, idEntity *attacker){
+
+	//player *p = (player*)inflictor;
+	if (!inflictor) {	//set inflictor if there is non
+		inflictor = gameLocal.world;
+	}
+
+	if (!attacker) {	//set attacker if there is non
+		attacker = gameLocal.world;
+	}
+
+	gameLocal.Printf("inflictor relation called \n");
 }
 
 /*

@@ -4299,13 +4299,18 @@ float idPlayer::PowerUpModifier( int type ) {
 	}
 
 	if ( PowerUpActive( POWERUP_HASTE ) ) {
+		//gameLocal.Printf("i think haste is active ??? \n");
 		switch ( type ) {
 			case PMOD_SPEED:	
 				mod *= 1.3f;
+				//gameLocal.Printf("I THINK \n");
+
 				break;
 
 			case PMOD_FIRERATE:
 				mod *= 0.7f;
+				gameLocal.Printf("I not SURE ASLKHda \n");
+
 				break;
 		}
 	}
@@ -4566,6 +4571,7 @@ void idPlayer::StopPowerUpEffect( int powerup ) {
 			break;
 		}
 		case POWERUP_HASTE: {
+								gameLocal.Printf("haste stopped I thinkg ???");
 			StopEffect( "fx_haste" );
 			break;
 		}
@@ -4702,6 +4708,7 @@ bool idPlayer::GivePowerUp( int powerup, int time, bool team ) {
 			break;
 		}
 		case POWERUP_HASTE: {
+			gameLocal.Printf("haste debug statement huehuehu\n");
 			gameLocal.mpGame.ScheduleAnnouncerSound( AS_GENERAL_HASTE, gameLocal.time, gameLocal.gameType == GAME_TOURNEY ? GetInstance() : -1 );
 			break;
 		}
@@ -10060,6 +10067,8 @@ inflictor, attacker, dir, and point can be NULL for environmental effects
 */
 void idPlayer::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &dir,
 					   const char *damageDefName, const float damageScale, int location ) {
+	gameLocal.Printf("in player dmg function \n");
+
  	idVec3		kick;
  	int			damage;
  	int			armorSave;

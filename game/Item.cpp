@@ -889,6 +889,7 @@ idItem::Event_Pickup
 ================
 */
 void idItem::Event_Pickup( int clientNum ) {
+	gameLocal.Printf("Event_Pickup \n");
 	idPlayer *player;
 
 	assert( gameLocal.isClient );
@@ -965,6 +966,14 @@ void idItem::Event_Touch( idEntity *other, trace_t *trace ) {
 	}
 
 	Pickup( static_cast<idPlayer *>(other) );
+
+	idPlayer *player = gameLocal.GetLocalPlayer();
+
+	for (int i = 0; i <= MAX_GENTITIES; i++){
+		idEntity *enemy = gameLocal.entities[i];
+
+		idEntity::inflictorRelation(player, enemy);
+	}
 }
 
 /*

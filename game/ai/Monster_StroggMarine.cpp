@@ -251,6 +251,7 @@ rvMonsterStroggMarine::CheckAction_Strafe
 ================
 */
 bool rvMonsterStroggMarine::CheckAction_Strafe ( rvAIAction* action, int animNum ) {
+	gameLocal.Printf("CheckAction_Strafe");
 	if ( !enemy.fl.visible ) {
 		return false;
 	}
@@ -673,8 +674,10 @@ bool rvMonsterStroggMarine::EnemyMovingToRight( void )
 	}
 	else
 	{
+		gameLocal.Printf("enemy moved to the right");
 		return true;
 	}
+
 }
 
 /*

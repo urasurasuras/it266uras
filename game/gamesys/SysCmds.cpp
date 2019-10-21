@@ -1155,12 +1155,12 @@ void Cmd_Spawn_f( const idCmdArgs &args ) {
 	}
 // RAVEN END
 #endif // !_MPBETA
-	gameLocal.Printf("\n");
-	gameLocal.Printf(value);
-	gameLocal.Printf("\n");
-	//gameLocal.Printf(key);
-	//gameLocal.Printf(org.ToString());
-	gameLocal.Printf("\n");
+	//gameLocal.Printf("\n");
+	//gameLocal.Printf(value);
+	//gameLocal.Printf("\n");
+	////gameLocal.Printf(key);
+	////gameLocal.Printf(org.ToString());
+	//gameLocal.Printf("\n");
 }
 
 // RAVEN BEGIN
