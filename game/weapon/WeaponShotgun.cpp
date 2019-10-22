@@ -23,7 +23,11 @@ protected:
 	int						hitscans;
 
 private:
-	//
+	//random number of hitscans and power
+	float numHitscans;
+	float randPower;
+
+
 	int					chargeTime;
 	int					fireHeldTime;
 
@@ -52,15 +56,18 @@ rvWeaponShotgun::Spawn
 ================
 */
 void rvWeaponShotgun::Spawn( void ) {
-	spread = rand() % 50 + 1;         // spread in the range 0 to 9
-	hitscans = rand() % 100 + 50;         // numAttacks in the range 0 to 9
-	power = rand() % 10 + 1;         // spread in the range 0 to 9
+	spread = rand()% 10;				 // spread in the range 0 to 9
+	numHitscans = rand() % 10;			 // numAttacks in the range 0 to 9
+	randPower = rand() % 10;				 // spread in the range 0 to 9
 
 
 	//hitscans   = spawnArgs.GetFloat( "hitscans" );
 	
 	SetState( "Raise", 0 );	
-	gameLocal.Printf("Spread: %.1f\nNumAttacks: %1.1f\nPower: %1.1f\n", spread, hitscans, power);
+	gameLocal.Printf("Spread: %.1f\n", spread);
+	gameLocal.Printf("numHitscans: %.1f\n", numHitscans);
+	gameLocal.Printf("power: %.1f\n", randPower);
+
 	//gameLocal.Printf(hitscans);
 }
 
@@ -185,7 +192,7 @@ stateResult_t rvWeaponShotgun::State_Fire( const stateParms_t& parms ) {
 			//	//PlayEffect("fx_normalflash", barrelJointView, false);
 			//	//PlayAnim(ANIMCHANNEL_ALL, "fire", parms.blendFrames);
 			//}
-			Attack( false, hitscans, spread, 0, power );
+			Attack( false, numHitscans, spread, 10, randPower );
 			//gameLocal.Printf("Spread of last shotgun fire: %.1f\n", spread);
 			PlayAnim( ANIMCHANNEL_ALL, "fire", 0 );	
 			return SRESULT_STAGE( STAGE_WAIT );

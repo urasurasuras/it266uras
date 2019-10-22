@@ -309,6 +309,7 @@ public:
 
 	virtual						~idClass();
 
+	float						randomFloatGenerator(float, float);
 	void						Spawn( void );
 	void						CallSpawn( void );
 	bool						IsType( const idTypeInfo &c ) const;

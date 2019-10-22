@@ -2592,7 +2592,7 @@ void rvWeapon::Attack( bool altAttack, int num_attacks, float spread, float fuse
 	// The attack is either a hitscan or a launched projectile, do that now.
 	if ( !gameLocal.isClient ) {
 		idDict& dict = altAttack ? attackAltDict : attackDict;
-		power *= owner->PowerUpModifier( PMOD_PROJECTILE_DAMAGE );
+		//power *= owner->PowerUpModifier( PMOD_PROJECTILE_DAMAGE );
 		if ( altAttack ? wfl.attackAltHitscan : wfl.attackHitscan ) {
 			Hitscan( dict, muzzleOrigin, muzzleAxis, num_attacks, spread, power );
 		} else {
