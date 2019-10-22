@@ -11597,6 +11597,7 @@ idPlayer::Event_ZoomIn
 ==================
 */
 void idPlayer::Event_ZoomIn ( void ) {
+	float randFov;
 	float currentFov;
 	float t;
 	
@@ -11634,7 +11635,10 @@ void idPlayer::Event_ZoomIn ( void ) {
 		t /= (DefaultFov() - weapon->GetZoomFov());
 		t *= weapon->GetZoomTime();
 
-		zoomFov.Init( gameLocal.time, SEC2MS(t), currentFov, weapon->GetZoomFov() );
+		//random zoom
+		randFov = rand() % 10;         // spread in the range 0 to 9
+		gameLocal.Printf("random fov: %1f \n", randFov);
+		zoomFov.Init(gameLocal.time, SEC2MS(t), currentFov, /*weapon->GetZoomFov()*/randFov);
 				
 		zoomed = true;
 		if ( weapon->GetZoomGui() )	{

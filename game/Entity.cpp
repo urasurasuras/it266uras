@@ -3685,7 +3685,7 @@ void idEntity::inflictorRelation(idEntity *inflictor, idEntity *attacker){
 		attacker = gameLocal.world;
 	}
 
-	gameLocal.Printf("inflictor relation called \n");
+	//gameLocal.Printf("inflictor relation called \n");
 }
 
 /*

@@ -2378,6 +2378,7 @@ calls Damage()
 */
 void idActor::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &dir, 
 					  const char *damageDefName, const float damageScale, const int location ) {
+	gameLocal.Printf("asdjgbasjkjfl;sadguiow \n");
 	if ( !fl.takedamage ) {
 		return;
 	}
