@@ -56,7 +56,7 @@ rvWeaponShotgun::Spawn
 ================
 */
 void rvWeaponShotgun::Spawn( void ) {
-	spread = rand()% 50;				 // spread in the range 0 to 9
+	spread = rand()% 20;				 // spread in the range 0 to 20
 	numHitscans = rand() % 10;			 // numAttacks in the range 0 to 9
 	randPower = rand() % 10;				 // spread in the range 0 to 9
 

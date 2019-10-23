@@ -18,6 +18,8 @@ public:
 	void					PreSave				( void );
 	void					PostSave			( void );
 
+	
+
 protected:
 
 	float				spreadZoom;
@@ -27,6 +29,8 @@ protected:
 	void				Flashlight			( bool on );
 
 private:
+	int randFireRate;
+	int randAltFireRate;
 
 	stateResult_t		State_Idle			( const stateParms_t& parms );
 	stateResult_t		State_Fire			( const stateParms_t& parms );
@@ -58,22 +62,29 @@ void rvWeaponMachinegun::Spawn ( void ) {
 	srand(time(NULL));
 	spread = rand() % 5;				 // spread in the range 0 to 5
 
-	float fireRate;
-	srand(time(NULL));
-	fireRate = rand() % 10;			 // firerate in the range 0 to 9
-	srand(time(NULL));
+	int randFireRates[4][20] = { 1, 10, 50, 100 };
+	int RandIndex = rand() % 4; //generates a random number between 0 and 3
+	int asd = 1;
+	gameLocal.Printf("randindex: %d\n", RandIndex);
+	gameLocal.Printf("randindex: %d\n", RandIndex);
 
-	float altFireRate;
+
+	fireRate = rand() % 100;
 	srand(time(NULL));
-	altFireRate	= rand() % 1;				 // alt firerate in the range 0 to 9
+	//randFireRate = rand() % 100+1;			 // firerate in the range 0 to 9
+	//srand(time(NULL));
+
+	float randAltFireRate;
+//	srand(time(NULL));
+	randAltFireRate	= rand() % 1;				 // alt firerate in the range 0 to 9
 
 	float spreadZoom;
-	srand(time(NULL));
+//	srand(time(NULL));
 	spreadZoom = rand() % 5;				 // alt spread in the range 0 to 5
 
 	gameLocal.Printf("Spread: %.1f\n", spread);
-	gameLocal.Printf("fireRate: %.1f\n", fireRate);
-	gameLocal.Printf("altFireRate: %.1f\n", altFireRate);
+	gameLocal.Printf("fireRate: %f\n", fireRate);
+	gameLocal.Printf("altFireRate: %.1f\n", randAltFireRate);
 	gameLocal.Printf("spreadZoom: %.1f\n", spreadZoom);
 
 
@@ -251,11 +262,11 @@ stateResult_t rvWeaponMachinegun::State_Fire ( const stateParms_t& parms ) {
 	switch ( parms.stage ) {
 		case STAGE_INIT:
 			if ( wsfl.zoom ) {
-				nextAttackTime = gameLocal.time + (altFireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
+				nextAttackTime = gameLocal.time + (/*randAltFireRate**/fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
 				Attack ( true, 1, spreadZoom, 0, 1.0f );
 				fireHeld = true;
 			} else {
-				nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
+				nextAttackTime = gameLocal.time + (/*randFireRate**/fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
 				Attack ( false, 1, spread, 0, 1.0f );
 			}
 			PlayAnim ( ANIMCHANNEL_ALL, "fire", 0 );	
