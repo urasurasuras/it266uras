@@ -470,7 +470,7 @@ ID_INLINE int rvWeapon::GetZoomFov ( void ) const {
 	int zoomFov;
 	srand(time(NULL));
 	zoomFov = rand() % 100;
-	gameLocal.Printf("random fov: %1f \n", zoomFov);
+	gameLocal.Printf("random fov: %d \n", zoomFov);
 	return zoomFov;
 }
 

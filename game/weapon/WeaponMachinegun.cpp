@@ -63,13 +63,12 @@ void rvWeaponMachinegun::Spawn ( void ) {
 	spread = rand() % 5;				 // spread in the range 0 to 5
 
 	int randFireRates[4][20] = { 1, 10, 50, 100 };
-	int RandIndex = rand() % 4; //generates a random number between 0 and 3
-	int asd = 1;
-	gameLocal.Printf("randindex: %d\n", RandIndex);
-	gameLocal.Printf("randindex: %d\n", RandIndex);
+	//int RandIndex = gameLocal.random.RandomInt();
+	gameLocal.random.SetSeed(gameLocal.time);
+	gameLocal.random.SetSeed(gameLocal.random.RandomInt());
+	fireRate = gameLocal.random.RandomInt(50);
+	spread = gameLocal.random.RandomInt(50);
 
-
-	fireRate = rand() % 100;
 	srand(time(NULL));
 	//randFireRate = rand() % 100+1;			 // firerate in the range 0 to 9
 	//srand(time(NULL));
@@ -83,8 +82,8 @@ void rvWeaponMachinegun::Spawn ( void ) {
 	spreadZoom = rand() % 5;				 // alt spread in the range 0 to 5
 
 	gameLocal.Printf("Spread: %.1f\n", spread);
-	gameLocal.Printf("fireRate: %f\n", fireRate);
-	gameLocal.Printf("altFireRate: %.1f\n", randAltFireRate);
+	gameLocal.Printf("fireRate: %d\n", fireRate);
+	//gameLocal.Printf("altFireRate: %.1f\n", randAltFireRate);
 	gameLocal.Printf("spreadZoom: %.1f\n", spreadZoom);
 
 
