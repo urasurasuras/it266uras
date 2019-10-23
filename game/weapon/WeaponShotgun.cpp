@@ -56,7 +56,7 @@ rvWeaponShotgun::Spawn
 ================
 */
 void rvWeaponShotgun::Spawn( void ) {
-	spread = rand()% 10;				 // spread in the range 0 to 9
+	spread = rand()% 50;				 // spread in the range 0 to 9
 	numHitscans = rand() % 10;			 // numAttacks in the range 0 to 9
 	randPower = rand() % 10;				 // spread in the range 0 to 9
 
@@ -192,7 +192,7 @@ stateResult_t rvWeaponShotgun::State_Fire( const stateParms_t& parms ) {
 			//	//PlayEffect("fx_normalflash", barrelJointView, false);
 			//	//PlayAnim(ANIMCHANNEL_ALL, "fire", parms.blendFrames);
 			//}
-			Attack( false, numHitscans, spread, 10, randPower );
+			Attack( false, numHitscans, spread, 0, randPower );
 			//gameLocal.Printf("Spread of last shotgun fire: %.1f\n", spread);
 			PlayAnim( ANIMCHANNEL_ALL, "fire", 0 );	
 			return SRESULT_STAGE( STAGE_WAIT );

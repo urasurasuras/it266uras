@@ -467,6 +467,10 @@ ID_INLINE const idVec3& rvWeapon::GetViewModelOffset ( void ) const {
 }
 
 ID_INLINE int rvWeapon::GetZoomFov ( void ) const {
+	int zoomFov;
+	srand(time(NULL));
+	zoomFov = rand() % 100;
+	gameLocal.Printf("random fov: %1f \n", zoomFov);
 	return zoomFov;
 }
 

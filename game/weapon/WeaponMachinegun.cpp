@@ -53,7 +53,31 @@ rvWeaponMachinegun::Spawn
 ================
 */
 void rvWeaponMachinegun::Spawn ( void ) {
-	spreadZoom = spawnArgs.GetFloat ( "spreadZoom" );
+
+	float spread;
+	srand(time(NULL));
+	spread = rand() % 5;				 // spread in the range 0 to 5
+
+	float fireRate;
+	srand(time(NULL));
+	fireRate = rand() % 10;			 // firerate in the range 0 to 9
+	srand(time(NULL));
+
+	float altFireRate;
+	srand(time(NULL));
+	altFireRate	= rand() % 1;				 // alt firerate in the range 0 to 9
+
+	float spreadZoom;
+	srand(time(NULL));
+	spreadZoom = rand() % 5;				 // alt spread in the range 0 to 5
+
+	gameLocal.Printf("Spread: %.1f\n", spread);
+	gameLocal.Printf("fireRate: %.1f\n", fireRate);
+	gameLocal.Printf("altFireRate: %.1f\n", altFireRate);
+	gameLocal.Printf("spreadZoom: %.1f\n", spreadZoom);
+
+
+	//spreadZoom = spawnArgs.GetFloat ( "spreadZoom" );
 	fireHeld   = false;
 		
 	SetState ( "Raise", 0 );	

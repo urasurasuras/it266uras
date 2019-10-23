@@ -11636,9 +11636,9 @@ void idPlayer::Event_ZoomIn ( void ) {
 		t *= weapon->GetZoomTime();
 
 		//random zoom
-		randFov = rand() % 10;         // spread in the range 0 to 9
-		gameLocal.Printf("random fov: %1f \n", randFov);
-		zoomFov.Init(gameLocal.time, SEC2MS(t), currentFov, /*weapon->GetZoomFov()*/randFov);
+		//randFov = rand() % 100;         // spread in the range 0 to 9
+		//gameLocal.Printf("random fov: %1f \n", randFov);
+		zoomFov.Init(gameLocal.time, SEC2MS(t), currentFov, weapon->GetZoomFov()/*randFov*/);
 				
 		zoomed = true;
 		if ( weapon->GetZoomGui() )	{
