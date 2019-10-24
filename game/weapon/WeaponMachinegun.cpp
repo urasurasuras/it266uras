@@ -11,7 +11,7 @@ public:
 
 	rvWeaponMachinegun ( void );
 
-	virtual void		Spawn				( void );
+	virtual void		Spawn(void);
 	virtual void		Think				( void );
 	void				Save				( idSaveGame *savefile ) const;
 	void				Restore				( idRestoreGame *savefile );
@@ -56,38 +56,26 @@ rvWeaponMachinegun::rvWeaponMachinegun ( void ) {
 rvWeaponMachinegun::Spawn
 ================
 */
-void rvWeaponMachinegun::Spawn ( void ) {
+void rvWeaponMachinegun::Spawn(void) {
+	idUserInterface*	ui = NULL;
+	//ui->SetStateInt("player_health", 10);
 
-	float spread;
-	srand(time(NULL));
-	spread = rand() % 5;				 // spread in the range 0 to 5
-
-	int randFireRates[4][20] = { 1, 10, 50, 100 };
+	//int randFireRates[4][20] = { 1, 10, 50, 100 };
 	//int RandIndex = gameLocal.random.RandomInt();
+
+	//initialize random seed
 	gameLocal.random.SetSeed(gameLocal.time);
 	gameLocal.random.SetSeed(gameLocal.random.RandomInt());
-	fireRate = gameLocal.random.RandomInt(50);
-	spread = gameLocal.random.RandomInt(50);
-
-	srand(time(NULL));
-	//randFireRate = rand() % 100+1;			 // firerate in the range 0 to 9
-	//srand(time(NULL));
-
-	float randAltFireRate;
-//	srand(time(NULL));
-	randAltFireRate	= rand() % 1;				 // alt firerate in the range 0 to 9
-
-	float spreadZoom;
-//	srand(time(NULL));
-	spreadZoom = rand() % 5;				 // alt spread in the range 0 to 5
-
+	fireRate = gameLocal.random.RandomInt(100);
+	spread = gameLocal.random.RandomInt(20);
+	spreadZoom = gameLocal.random.RandomInt(5);
+	
 	gameLocal.Printf("Spread: %.1f\n", spread);
 	gameLocal.Printf("fireRate: %d\n", fireRate);
 	//gameLocal.Printf("altFireRate: %.1f\n", randAltFireRate);
 	gameLocal.Printf("spreadZoom: %.1f\n", spreadZoom);
+	//_hud->SetStateInt("player_health", 50);
 
-
-	//spreadZoom = spawnArgs.GetFloat ( "spreadZoom" );
 	fireHeld   = false;
 		
 	SetState ( "Raise", 0 );	

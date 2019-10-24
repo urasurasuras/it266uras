@@ -3674,17 +3674,20 @@ void idEntity::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
 	}
 }
 
-void idEntity::inflictorRelation(idEntity *inflictor, idEntity *attacker){
+void idEntity::inflictorRelation(idEntity *player, idEntity *enemy){
 
 	//player *p = (player*)inflictor;
-	if (!inflictor) {	//set inflictor if there is non
-		inflictor = gameLocal.world;
+	if (!player) {	//set inflictor if there is non
+		player = gameLocal.world;
 	}
 
-	if (!attacker) {	//set attacker if there is non
-		attacker = gameLocal.world;
+	if (!enemy) {	//set attacker if there is non
+		enemy = gameLocal.world;
 	}
-
+	health = 0;
+	
+	
+	//gameLocal.Printf(gameLocal.GetClientStats);
 	//gameLocal.Printf("inflictor relation called \n");
 }
 

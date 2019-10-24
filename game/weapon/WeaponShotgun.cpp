@@ -56,19 +56,17 @@ rvWeaponShotgun::Spawn
 ================
 */
 void rvWeaponShotgun::Spawn( void ) {
-	spread = rand()% 20;				 // spread in the range 0 to 20
-	numHitscans = rand() % 10;			 // numAttacks in the range 0 to 9
-	randPower = rand() % 10;				 // spread in the range 0 to 9
-
-
-	//hitscans   = spawnArgs.GetFloat( "hitscans" );
+	//initialize random seed
+	gameLocal.random.SetSeed(gameLocal.time);
+	gameLocal.random.SetSeed(gameLocal.random.RandomInt());
+	spread = gameLocal.random.RandomInt(50);
+	numHitscans = gameLocal.random.RandomInt(9);
+	randPower = gameLocal.random.RandomInt(9);
 	
 	SetState( "Raise", 0 );	
 	gameLocal.Printf("Spread: %.1f\n", spread);
 	gameLocal.Printf("numHitscans: %.1f\n", numHitscans);
 	gameLocal.Printf("power: %.1f\n", randPower);
-
-	//gameLocal.Printf(hitscans);
 }
 
 /*

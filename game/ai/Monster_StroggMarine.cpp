@@ -251,7 +251,7 @@ rvMonsterStroggMarine::CheckAction_Strafe
 ================
 */
 bool rvMonsterStroggMarine::CheckAction_Strafe ( rvAIAction* action, int animNum ) {
-	gameLocal.Printf("CheckAction_Strafe");
+	gameLocal.Printf("CheckAction_Strafe\n");
 	if ( !enemy.fl.visible ) {
 		return false;
 	}

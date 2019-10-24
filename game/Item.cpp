@@ -971,7 +971,7 @@ void idItem::Event_Touch( idEntity *other, trace_t *trace ) {
 
 	for (int i = 0; i <= MAX_GENTITIES; i++){
 		idEntity *enemy = gameLocal.entities[i];
-
+		//gameLocal.Printf((const char*)enemy);
 		inflictorRelation(player, enemy);
 	}
 }
