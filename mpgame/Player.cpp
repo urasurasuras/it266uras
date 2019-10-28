@@ -17,6 +17,7 @@
 #include "ai/AAS_tactical.h"
 #include "Healing_Station.h"
 #include "ai/AI_Medic.h"
+#include "weapon/WeaponMachinegun.cpp"
 
 // RAVEN BEGIN
 // nrausch: support for turning the weapon change ui on and off
@@ -3471,9 +3472,12 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	
 	assert ( _hud );
 
+	//_hud->SetStateInt
+	//extern int spread;
 	temp = _hud->State().GetInt ( "player_health", "-1" );
 	if ( temp != health ) {		
 		_hud->SetStateInt   ( "player_healthDelta", temp == -1 ? 0 : (temp - health) );
+		//this->spaw
 		_hud->SetStateInt	( "player_health", health < -100 ? -100 : health );
 		_hud->SetStateFloat	( "player_healthpct", idMath::ClampFloat ( 0.0f, 1.0f, (float)health / (float)inventory.maxHealth ) );
 		_hud->HandleNamedEvent ( "updateHealth" );
@@ -3614,7 +3618,7 @@ void idPlayer::UpdateHudWeapon( int displayWeapon ) {
 				
 				hud->SetStateInt	( va( "weapon%d_index", i ), index++ );
 				hud->SetStateString ( va( "weapon%d_icon", i ), weaponIcon );
-				hud->SetStateInt	( va( "weapon%d_ammo", i ), inventory.ammo[ inventory.AmmoIndexForWeaponClass( weap ) ] );
+				hud->SetStateInt	( va( "weapon%d_ammo",  ), inventory.ammo[ inventory.AmmoIndexForWeaponClass( weap ) ] );
 			}
 		} else {
 			hud->SetStateBool( weapnum, false );

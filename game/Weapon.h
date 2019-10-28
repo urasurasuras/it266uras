@@ -107,6 +107,11 @@ private:
 class rvWeapon : public idClass {
 public:
 
+	/////////////////////
+	/*void getStats(rvWeapon*& A){
+		A->fireRate;
+	}*/
+	/////////////////////
 	CLASS_PROTOTYPE( rvWeapon );
 
 	rvWeapon( void );

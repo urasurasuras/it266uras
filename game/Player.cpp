@@ -3396,7 +3396,8 @@ void idPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	if ( temp != health ) {		
 		_hud->SetStateInt   ( "player_healthDelta", temp == -1 ? 0 : (temp - health) );
 		//_hud->SetStateInt("player_health", 50);
-//		_hud->SetStateInt	( "player_health", health < -100 ? -100 : health );
+		
+		_hud->SetStateInt	( "player_health", health < -100 ? -100 : health );
 		_hud->SetStateFloat	( "player_healthpct", idMath::ClampFloat ( 0.0f, 1.0f, (float)health / (float)inventory.maxHealth ) );
 		_hud->HandleNamedEvent ( "updateHealth" );
 	}
@@ -5177,10 +5178,17 @@ idPlayer::UpdateObjectiveInfo
 ==============
  */
 void idPlayer::UpdateObjectiveInfo( void ) {
+
+	/////
+	*this->passedVar;
+	int smth = *this->passedVar;
+	/////
+
 	if ( objectiveSystem == NULL ) {
 		return;
 	}
-	objectiveSystem->SetStateString( "objective1", "" );
+	//objectiveSystem->SetStateInt("objective1",smth);
+	objectiveSystem->SetStateString( "objective1", "anan" );
 	objectiveSystem->SetStateString( "objective2", "" );
 	objectiveSystem->SetStateString( "objective3", "" );
 
@@ -5189,8 +5197,8 @@ void idPlayer::UpdateObjectiveInfo( void ) {
 	int objectiveCount = inventory.objectiveNames.Num();
 	for ( int i = 0; i < inventory.objectiveNames.Num(); i++, objectiveCount-- ) {
 		objectiveSystem->SetStateString( va( "objective%i", objectiveCount ), "1" );
-		objectiveSystem->SetStateString( va( "objectivetitle%i", objectiveCount ), inventory.objectiveNames[i].title.c_str() );
-		objectiveSystem->SetStateString( va( "objectivetext%i", objectiveCount), inventory.objectiveNames[i].text.c_str() );
+		objectiveSystem->SetStateString( va( "objectivetitle%i", objectiveCount ), /*inventory.objectiveNames[i].title.c_str()*/"obj title" );
+		objectiveSystem->SetStateString( va( "objectivetext%i", objectiveCount), /*inventory.objectiveNames[i].text.c_str()*/"obj text" );
 		objectiveSystem->SetStateInt( va( "objectiveLength%i", objectiveCount), inventory.objectiveNames[i].text.Length() );
 		objectiveSystem->SetStateString( va( "objectiveshot%i", objectiveCount), inventory.objectiveNames[i].screenshot.c_str() );
 	}

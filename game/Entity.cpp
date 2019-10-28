@@ -3676,7 +3676,7 @@ void idEntity::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &di
 
 void idEntity::inflictorRelation(idEntity *player, idEntity *enemy){
 
-	//player *p = (player*)inflictor;
+	idPlayer * p;	//p is a pointer type of idPlayer
 	if (!player) {	//set inflictor if there is non
 		player = gameLocal.world;
 	}

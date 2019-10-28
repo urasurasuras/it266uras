@@ -7,6 +7,11 @@
 class rvWeaponMachinegun : public rvWeapon {
 public:
 
+	////////////////////////
+	/*
+	rvWeapon* A;
+	rvWeaponMachinegun(){
+	}*/
 	CLASS_PROTOTYPE( rvWeaponMachinegun );
 
 	rvWeaponMachinegun ( void );
@@ -57,19 +62,24 @@ rvWeaponMachinegun::Spawn
 ================
 */
 void rvWeaponMachinegun::Spawn(void) {
-	idUserInterface*	ui = NULL;
+	//idUserInterface * hud = idPlayer::hud;
 	//ui->SetStateInt("player_health", 10);
-
+	
 	//int randFireRates[4][20] = { 1, 10, 50, 100 };
 	//int RandIndex = gameLocal.random.RandomInt();
 
 	//initialize random seed
+	idPlayer *player = gameLocal.GetLocalPlayer();
+
 	gameLocal.random.SetSeed(gameLocal.time);
 	gameLocal.random.SetSeed(gameLocal.random.RandomInt());
+
 	fireRate = gameLocal.random.RandomInt(100);
 	spread = gameLocal.random.RandomInt(20);
 	spreadZoom = gameLocal.random.RandomInt(5);
 	
+	int * spreadPtr;
+	player->passedVar = &fireRate;
 	gameLocal.Printf("Spread: %.1f\n", spread);
 	gameLocal.Printf("fireRate: %d\n", fireRate);
 	//gameLocal.Printf("altFireRate: %.1f\n", randAltFireRate);
