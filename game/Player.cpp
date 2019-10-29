@@ -5224,10 +5224,10 @@ void idPlayer::GiveObjective( const char *title, int value) {	//Uras: show in ob
 	
 
 // RAVEN BEGIN
-	info.title = "test obj title\n"/*common->GetLocalizedString( title )*/;
+	info.title = "Spread:\n"/*common->GetLocalizedString( title )*/;
 	//std::string value2 = "pi is " + std::to_string(value);
 
-	info.text = idStr::FormatNumber(value);
+	info.text = (idStr::FormatNumber(value));
 	//gameLocal.Printf(info.text);
 	gameLocal.Printf("using value: %1d\n", info.text);
 // RAVEN END

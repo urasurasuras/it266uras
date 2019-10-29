@@ -67,6 +67,10 @@ void rvWeaponShotgun::Spawn( void ) {
 	gameLocal.Printf("Spread: %.1f\n", spread);
 	gameLocal.Printf("numHitscans: %.1f\n", numHitscans);
 	gameLocal.Printf("power: %.1f\n", randPower);
+
+	idPlayer *player = gameLocal.GetLocalPlayer();
+	player->GiveObjective("Spread: ", spread);
+	player->passedVar = &fireRate;
 }
 
 /*

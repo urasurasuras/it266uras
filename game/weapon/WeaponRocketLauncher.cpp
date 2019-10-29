@@ -143,7 +143,8 @@ void rvWeaponRocketLauncher::Spawn ( void ) {
 	randPower = gameLocal.random.RandomInt(50);
 	//spreadZoom = gameLocal.random.RandomInt(5);
 
-	//int * spreadPtr;
+	idPlayer *player = gameLocal.GetLocalPlayer();
+	player->GiveObjective("Spread: ", spread);
 	player->passedVar = &fireRate;
 
 	gameLocal.Printf("Spread: %.1f\n", spread);
