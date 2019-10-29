@@ -93,6 +93,7 @@ struct idObjectiveInfo {
 	idStr title;
 	idStr text;
 	idStr screenshot;
+	int contextlavue;	//yeee
 };
 
 struct idLevelTriggerInfo {
@@ -533,7 +534,7 @@ public:
 	idDict *				FindInventoryItem( const char *name );
 
 	// Wrist computer
-	void					GiveObjective				( const char *title, const char *text, const char *screenshot );
+	void					GiveObjective				( const char *title, int );	//Uras: show in obj gui
 	void					CompleteObjective			( const char *title );
 	void					FailObjective				( const char *title );
 	void					GiveDatabaseEntry			( const idDict* dbEntry, bool hudPopup = true );

@@ -17,6 +17,7 @@
 #include "ai/AAS_tactical.h"
 #include "Healing_Station.h"
 #include "ai/AI_Medic.h"
+//#include <string>
 
 // RAVEN BEGIN
 // nrausch: support for turning the weapon change ui on and off
@@ -5182,13 +5183,14 @@ void idPlayer::UpdateObjectiveInfo( void ) {
 	/////
 	*this->passedVar;
 	int smth = *this->passedVar;
+	//gameLocal.Printf("passed var %1d\n",smth);
 	/////
 
 	if ( objectiveSystem == NULL ) {
 		return;
 	}
 	//objectiveSystem->SetStateInt("objective1",smth);
-	objectiveSystem->SetStateString( "objective1", "anan" );
+	objectiveSystem->SetStateString( "objective1", "" );
 	objectiveSystem->SetStateString( "objective2", "" );
 	objectiveSystem->SetStateString( "objective3", "" );
 
@@ -5197,8 +5199,8 @@ void idPlayer::UpdateObjectiveInfo( void ) {
 	int objectiveCount = inventory.objectiveNames.Num();
 	for ( int i = 0; i < inventory.objectiveNames.Num(); i++, objectiveCount-- ) {
 		objectiveSystem->SetStateString( va( "objective%i", objectiveCount ), "1" );
-		objectiveSystem->SetStateString( va( "objectivetitle%i", objectiveCount ), /*inventory.objectiveNames[i].title.c_str()*/"obj title" );
-		objectiveSystem->SetStateString( va( "objectivetext%i", objectiveCount), /*inventory.objectiveNames[i].text.c_str()*/"obj text" );
+		objectiveSystem->SetStateString( va( "objectivetitle%i", objectiveCount ), inventory.objectiveNames[i].title.c_str());
+		objectiveSystem->SetStateString( va( "objectivetext%i", objectiveCount), inventory.objectiveNames[i].text.c_str());
 		objectiveSystem->SetStateInt( va( "objectiveLength%i", objectiveCount), inventory.objectiveNames[i].text.Length() );
 		objectiveSystem->SetStateString( va( "objectiveshot%i", objectiveCount), inventory.objectiveNames[i].screenshot.c_str() );
 	}
@@ -5213,13 +5215,21 @@ void idPlayer::UpdateObjectiveInfo( void ) {
 idPlayer::GiveObjective
 ===============
 */
-void idPlayer::GiveObjective( const char *title, const char *text, const char *screenshot ) {
+void idPlayer::GiveObjective( const char *title, int value) {	//Uras: show in obj gui
 	idObjectiveInfo info;
+
+	/**this->passedVar;
+	int smth = *this->passedVar;
+	gameLocal.Printf("passedvar: %1d",smth);*/
+	
+
 // RAVEN BEGIN
-	info.title = common->GetLocalizedString( title );
-	info.text = common->GetLocalizedString( text );
+	info.title = ""/*common->GetLocalizedString( title )*/;
+	//std::string value2 = "pi is " + std::to_string(value);
+
+	//info.text = (value2);
 // RAVEN END
-	info.screenshot = screenshot;
+	//info.screenshot = screenshot;
 	inventory.objectiveNames.Append( info );
 	if ( showNewObjectives ) {
 		ShowObjective( "newObjective" );

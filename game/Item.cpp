@@ -1365,7 +1365,7 @@ void idObjective::Event_Trigger( idEntity *activator ) {
 				player->GetObjectiveHud()->SetStateString( "objectivetext", common->GetLocalizedString( spawnArgs.GetString( "objectivetext" ) ) );
 				player->GetObjectiveHud()->SetStateString( "objectivetitle", common->GetLocalizedString( spawnArgs.GetString( "objectivetitle" ) ) );
 // RAVEN END
- 				player->GiveObjective( spawnArgs.GetString( "objectivetitle" ), spawnArgs.GetString( "objectivetext" ), shotName );
+ 				//player->GiveObjective( spawnArgs.GetString( "objectivetitle" ), spawnArgs.GetString( "objectivetext" ), shotName );
 
 				// a tad slow but keeps from having to update all objectives in all maps with a name ptr
 				for( int i = 0; i < gameLocal.num_entities; i++ ) {

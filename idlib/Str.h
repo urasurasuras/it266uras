@@ -1,4 +1,4 @@
-
+//#include <string>
 #ifndef __STR_H__
 #define __STR_H__
 
@@ -136,6 +136,9 @@ public:
 
 	void				operator=( const idStr &text );
 	void				operator=( const char *text );
+
+	//
+	//void				operator=(std::string value);
 
 	friend idStr		operator+( const idStr &a, const idStr &b );
 	friend idStr		operator+( const idStr &a, const char *b );
