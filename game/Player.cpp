@@ -10088,7 +10088,7 @@ inflictor, attacker, dir, and point can be NULL for environmental effects
 */
 void idPlayer::Damage( idEntity *inflictor, idEntity *attacker, const idVec3 &dir,
 					   const char *damageDefName, const float damageScale, int location ) {
-	gameLocal.Printf("in player dmg function \n");
+	//gameLocal.Printf("in player dmg function \n");
 
  	idVec3		kick;
  	int			damage;
