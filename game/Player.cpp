@@ -542,7 +542,7 @@ void idInventory::Restore( idRestoreGame *savefile ) {
 	for( i = 0; i < num; i++ ) {
 		idObjectiveInfo obj;
 		savefile->ReadString( obj.screenshot );
-		savefile->ReadString( obj.text );
+		//savefile->ReadString( obj.text );
 		savefile->ReadString( obj.title );
 		objectiveNames.Append( obj );
 	}
@@ -5224,10 +5224,12 @@ void idPlayer::GiveObjective( const char *title, int value) {	//Uras: show in ob
 	
 
 // RAVEN BEGIN
-	info.title = ""/*common->GetLocalizedString( title )*/;
+	info.title = "test obj title\n"/*common->GetLocalizedString( title )*/;
 	//std::string value2 = "pi is " + std::to_string(value);
 
-	//info.text = (value2);
+	info.text = idStr::FormatNumber(value);
+	//gameLocal.Printf(info.text);
+	gameLocal.Printf("using value: %1d\n", info.text);
 // RAVEN END
 	//info.screenshot = screenshot;
 	inventory.objectiveNames.Append( info );

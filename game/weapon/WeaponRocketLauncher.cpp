@@ -50,6 +50,9 @@ protected:
 	bool								idleEmpty;
 
 private:
+	//random number of hitscans and power
+	float numHitscans;
+	float randPower;
 
 	stateResult_t		State_Idle				( const stateParms_t& parms );
 	stateResult_t		State_Fire				( const stateParms_t& parms );
@@ -127,6 +130,27 @@ void rvWeaponRocketLauncher::Spawn ( void ) {
 		rate = (float)anim->Length() / (float)SEC2MS(spawnArgs.GetFloat ( "reloadRate", ".8" ));
 		anim->SetPlaybackRate ( rate );
 	}
+
+	idPlayer *player = gameLocal.GetLocalPlayer();
+
+	//initialize random seed
+	gameLocal.random.SetSeed(gameLocal.time);
+	gameLocal.random.SetSeed(gameLocal.random.RandomInt());
+
+	fireRate = gameLocal.random.RandomInt(100);
+	spread = gameLocal.random.RandomInt(20);
+	numHitscans = gameLocal.random.RandomInt(9);
+	randPower = gameLocal.random.RandomInt(50);
+	//spreadZoom = gameLocal.random.RandomInt(5);
+
+	//int * spreadPtr;
+	player->passedVar = &fireRate;
+
+	gameLocal.Printf("Spread: %.1f\n", spread);
+	gameLocal.Printf("fireRate: %d\n", fireRate);
+	//gameLocal.Printf("altFireRate: %.1f\n", randAltFireRate);
+	gameLocal.Printf("power: %.1f\n", randPower);
+	//_hud->SetStateInt("player_health", 50);
 
 	SetState ( "Raise", 0 );	
 	SetRocketState ( "Rocket_Idle", 0 );
@@ -446,7 +470,7 @@ stateResult_t rvWeaponRocketLauncher::State_Fire ( const stateParms_t& parms ) {
 	switch ( parms.stage ) {
 		case STAGE_INIT:
 			nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));		
-			Attack ( false, 1, spread, 0, 1.0f );
+			Attack ( false, numHitscans, spread, 0, randPower );
 			PlayAnim ( ANIMCHANNEL_LEGS, "fire", parms.blendFrames );	
 			return SRESULT_STAGE ( STAGE_WAIT );
 	

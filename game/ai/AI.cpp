@@ -3708,8 +3708,8 @@ void idAI::OnDeath( void ){
 	idPlayer *player = gameLocal.GetLocalPlayer();
 	idEntity::inflictorRelation(player, this);
 
-	const char drops[5][25] = { "weapon_shotgun", "weapon_rocketlauncher", "weapon_machinegun", "weapon_dmg","item_health_small" };
-	char RandIndex = rand() % 5; //generates a random number between 0 and 3
+	const char drops[4][25] = { "weapon_shotgun", "weapon_rocketlauncher", "weapon_machinegun", "item_health_small" };
+	char RandIndex = rand() % 4; //generates a random number between 0 and 3
 	const char* randomWeapon = drops[RandIndex];	
 	spawnArgs.Set("def_dropsItem1", randomWeapon);
 	//gameLocal.Printf("hello ??? \n");

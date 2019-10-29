@@ -2099,6 +2099,8 @@ int numFormatList = sizeof(formatList) / sizeof( formatList[0] );
 
 idStr idStr::FormatNumber( int number ) {
 	idStr string;
+	idStr string2;
+
 	bool hit;
 
 	// reset
@@ -2155,8 +2157,8 @@ idStr idStr::FormatNumber( int number ) {
 	for ( int i = 0; i < count; i++ ) {
 		string.Insert( " ", 0 );
 	}
-
-	return string;
+	string2 = va("%1d", number);
+	return string2;
 }
 
 // RAVEN BEGIN

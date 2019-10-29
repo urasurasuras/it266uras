@@ -331,6 +331,7 @@ public:
 	static bool			CharIsNewLine( byte c );
 	static bool			CharIsTab( byte c );
 	static int			ColorIndex( int c );
+	static int			doTheIntThing(int c);
 	static idVec4 &		ColorForIndex( int i );
 
 	friend int			sprintf( idStr &dest, const char *fmt, ... );
@@ -1100,4 +1101,7 @@ ID_INLINE int idStr::DynamicMemoryUsed() const {
 	return ( data == baseBuffer ) ? 0 : alloced;
 }
 
+ID_INLINE int idStr::doTheIntThing(int c) {
+	return c;
+}
 #endif /* !__STR_H__ */
