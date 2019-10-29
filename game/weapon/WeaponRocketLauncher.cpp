@@ -131,20 +131,23 @@ void rvWeaponRocketLauncher::Spawn ( void ) {
 		anim->SetPlaybackRate ( rate );
 	}
 
-	idPlayer *player = gameLocal.GetLocalPlayer();
-
 	//initialize random seed
 	gameLocal.random.SetSeed(gameLocal.time);
 	gameLocal.random.SetSeed(gameLocal.random.RandomInt());
 
 	fireRate = gameLocal.random.RandomInt(100);
-	spread = gameLocal.random.RandomInt(20);
+	spread = gameLocal.random.RandomInt(200);
 	numHitscans = gameLocal.random.RandomInt(9);
 	randPower = gameLocal.random.RandomInt(50);
 	//spreadZoom = gameLocal.random.RandomInt(5);
 
 	idPlayer *player = gameLocal.GetLocalPlayer();
-	player->GiveObjective("Spread: ", spread);
+	player->GiveObjective(("Spread of launcher: "), spread);
+	player->GiveObjective(("Number of hitscans of launcher: "), numHitscans);
+	player->GiveObjective(("FireRate of launcher: "), numHitscans);
+
+	//player->GiveObjective(("Spread: "), spread);
+
 	player->passedVar = &fireRate;
 
 	gameLocal.Printf("Spread: %.1f\n", spread);

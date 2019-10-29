@@ -73,8 +73,8 @@ void rvWeaponMachinegun::Spawn(void) {
 	gameLocal.random.SetSeed(gameLocal.time);
 	gameLocal.random.SetSeed(gameLocal.random.RandomInt());
 
-	fireRate = gameLocal.random.RandomInt(100);
-	spread = gameLocal.random.RandomInt(20);
+	fireRate = gameLocal.random.RandomInt(50);
+	spread = gameLocal.random.RandomInt(50);
 	spreadZoom = gameLocal.random.RandomInt(5);
 	
 
@@ -85,7 +85,10 @@ void rvWeaponMachinegun::Spawn(void) {
 	//_hud->SetStateInt("player_health", 50);
 	
 	idPlayer *player = gameLocal.GetLocalPlayer();
-	player->GiveObjective("Spread: ", spread);
+	player->GiveObjective("Fire rate of smg: ", fireRate);
+	player->GiveObjective("Spread of smg: ", spread);
+	player->GiveObjective("Alternate spread of smg: ", spreadZoom);
+
 	player->passedVar = &fireRate;
 
 	fireHeld   = false;
